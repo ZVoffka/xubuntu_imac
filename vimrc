@@ -1,5 +1,6 @@
 set nocompatible
 set number
+set relativenumber
 set nocp
 set ruler
 set laststatus=2
@@ -13,22 +14,21 @@ set showmatch
 set smartindent
 set autoindent
 set cursorline
-"http://habrahabr.ru/post/116523/
-"
-filetype off
+"----------------------
 
-call pathogen#helptags()
-call pathogen#runtime_append_all_bundles()
+execute pathogen#infect("bundle/{Plugin 'Syntastic'}")
+syntax on
 
 filetype plugin indent on
 "----------------------
-if empty(glob("~/.vim/autoload/plug.vim"))
+"if empty(glob("~/.vim/autoload/plug.vim"))
 	execute '!curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.github.com/junegunn/vim-plug/master/plug.vim'
-endif
+"endif
 "----------------------
 call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree'
 Plug 'vim-scripts/delimitMate.vim'
+Plug 'scrooloose/syntastic'
 call plug#end()
 "----------------------
 set spelllang=en,ru "проверка арфографи
@@ -38,20 +38,19 @@ set langmap=!\\"№\\;%?*ёйцукенгшщзхъфывапролджэячс�
 " 256 colors for terminal vim
 set t_Co=256
 "----------------------
-nnoremap <F3> :NumbersToggle<CR>
-"nnoremap <F4> :NumbersOnOff<CR>
 
 "statr NERDTree---------------------
-autocmd vimenter * NERDTree
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-map <C-n> :NERDTreeToggle<CR>
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-let g:NERDTreeDirArrowExpandable = '▸'
-let g:NERDTreeDirArrowCollapsible = '▾'
+"autocmd vimenter * NERDTree
+"autocmd StdinReadPre * let s:std_in=1
+"autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+"map <C-n> :NERDTreeToggle<CR>
+"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+"let g:NERDTreeDirArrowExpandable = '▸'
+"let g:NERDTreeDirArrowCollapsible = '▾'
 "end NERDTree-----------
 "
-"установка плагина vudle
+"установка плагина vudle----------------
+"
 "filetype on 
 "filetype plugin on 
 "set rtp+=~/.vim/bundle/vundle/
@@ -62,7 +61,7 @@ let g:NERDTreeDirArrowCollapsible = '▾'
 "filetype plugin indent off     " обязательно!
 "filetype indent on
 "
-""репозитории на github
+"репозитории на github
 "Bundle 'tpope/vim-fugitive'
 "Bundle 'lokaltog/vim-easymotion'
 "Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
