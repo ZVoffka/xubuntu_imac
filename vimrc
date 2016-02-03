@@ -1,6 +1,6 @@
 set nocompatible
 set number
-set relativenumber
+"set relativenumber
 set nocp
 set ruler
 set laststatus=2
@@ -14,22 +14,31 @@ set showmatch
 set smartindent
 set autoindent
 set cursorline
-"----------------------
 
+"----------------------
 execute pathogen#infect("bundle/{Plugin 'Syntastic'}")
 syntax on
 
 filetype plugin indent on
 "----------------------
+"
 "if empty(glob("~/.vim/autoload/plug.vim"))
 	execute '!curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.github.com/junegunn/vim-plug/master/plug.vim'
 "endif
-"----------------------
+"
+"---------PlugInstall--------
+"
 call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree'
 Plug 'vim-scripts/delimitMate.vim'
 Plug 'scrooloose/syntastic'
+Plug 'myusuf3/numbers.vim'
 call plug#end()
+"----------------------
+let g:numbers_exclude = ['tagbar', 'gundo', 'minibufexpl', 'nerdtree']
+let g:numbers_exclude = ['unite', 'tagbar', 'startify', 'gundo', 'vimshell', 'w3m']$
+nnoremap <F3> :NumbersToggle<CR>
+nnoremap <F4> :NumbersOnOff<CR>
 "----------------------
 set spelllang=en,ru "проверка арфографи
 autocmd FileType plaintext setlocal spell spelllang=ru
