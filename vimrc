@@ -1,6 +1,6 @@
 set nocompatible
 set number
-"set relativenumber
+set relativenumber
 set nocp
 set ruler
 set laststatus=2
@@ -22,10 +22,6 @@ syntax on
 filetype plugin indent on
 "----------------------
 "
-"if empty(glob("~/.vim/autoload/plug.vim"))
-	execute '!curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.github.com/junegunn/vim-plug/master/plug.vim'
-"endif
-"
 "---------PlugInstall--------
 "
 call plug#begin('~/.vim/plugged')
@@ -33,12 +29,16 @@ Plug 'scrooloose/nerdtree'
 Plug 'vim-scripts/delimitMate.vim'
 Plug 'scrooloose/syntastic'
 Plug 'myusuf3/numbers.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 call plug#end()
 "----------------------
 let g:numbers_exclude = ['tagbar', 'gundo', 'minibufexpl', 'nerdtree']
-let g:numbers_exclude = ['unite', 'tagbar', 'startify', 'gundo', 'vimshell', 'w3m']$
+let g:numbers_exclude = ['unite', 'tagbar', 'startify', 'gundo', 'vimshell', 'w3m']
+
+let g:enable_numbers = 0
+
 nnoremap <F3> :NumbersToggle<CR>
-nnoremap <F4> :NumbersOnOff<CR>
+nnoremap <F4> :NumbersEnable<CR>
 "----------------------
 set spelllang=en,ru "проверка арфографи
 autocmd FileType plaintext setlocal spell spelllang=ru
@@ -48,46 +48,19 @@ set langmap=!\\"№\\;%?*ёйцукенгшщзхъфывапролджэячс�
 set t_Co=256
 "----------------------
 
-"statr NERDTree---------------------
-"autocmd vimenter * NERDTree
-"autocmd StdinReadPre * let s:std_in=1
-"autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-"map <C-n> :NERDTreeToggle<CR>
-"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-"let g:NERDTreeDirArrowExpandable = '▸'
-"let g:NERDTreeDirArrowCollapsible = '▾'
-"end NERDTree-----------
+"--------statr NERDTree----------
 "
-"установка плагина vudle----------------
+autocmd vimenter * NERDTree
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+map <C-n> :NERDTreeToggle<CR>
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
 "
-"filetype on 
-"filetype plugin on 
-"set rtp+=~/.vim/bundle/vundle/
-"call vundle#begin()
-"Plugin 'scrooloose/nerdtree'
-"call vundle#rc()
+"--------end NERDTree-----------
 "
-"filetype plugin indent off     " обязательно!
-"filetype indent on
 "
-"репозитории на github
-"Bundle 'tpope/vim-fugitive'
-"Bundle 'lokaltog/vim-easymotion'
-"Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
-"Bundle 'Syntastic'
-"Bundle 'scrooloose/nerdtree'
-"Bundle 'numbers.vim'
-"Bundle 'L9'
-"Bundle 'FuzzyFinder'
-"Bundle 'rails.vim'
-"Bundle 'pangloss/vim-javascript'
-"Bundle 'stephpy/vim-php-cs-fixer'
-
-"#Directories for sqp files##
-"set backupdir=~/dotvim/vim_backups//
-"set directory=~/dotvim/vim_backups//
-"set viewdir=~/dotvim/vim_backups//
-
 "#для редактирования простого текста 
 set tw=80
 source $VIMRUNTIME/macros/justify.vim
